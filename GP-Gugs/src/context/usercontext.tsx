@@ -19,6 +19,7 @@ export function UserProvider({ children }: UserProviderProps) {
     ? JSON.parse(savedUserData)
     : {
         nome: 'Administrador',
+        
         email: 'adm@chocolate.com',
         senha: '123',
       };
