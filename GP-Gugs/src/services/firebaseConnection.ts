@@ -5,6 +5,7 @@ import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyA8cdmUMKV95zyXEitkFy6_N5BUTn3VaKs",
   authDomain: "react-routes-ad083.firebaseapp.com",
+  databaseURL: "https://react-routes-ad083-default-rtdb.firebaseio.com",
   projectId: "react-routes-ad083",
   storageBucket: "react-routes-ad083.appspot.com",
   messagingSenderId: "124111641167",

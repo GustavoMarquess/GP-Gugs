@@ -3,7 +3,7 @@ import { UserContext } from '../../context/usercontext';
 import './styles.css';
 
 export default function User() {
-  const { email, nome, senha } = useContext(UserContext);
+  const {email, nome, senha } = useContext(UserContext);
   const [userPassword, setUserPassword] = useState('');
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');

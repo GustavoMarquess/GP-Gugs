@@ -1,57 +1,55 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../services/firebaseConnection";
-import "./styles.css";
-import {useContext} from "react";
-import { UserContext } from "../../context/usercontext";
-
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setIsAuthenticated, setEmail: setAuthEmail } = useAuth();
 
-
-  function handleSubmit(e: FormEvent) {
+  async function handleLogin(e: FormEvent) {
     e.preventDefault();
 
     if (email === "" || password === "") {
-      alert("Prencha todos os campos");
+      alert("Usuario e Senha não informados!");
       return;
     }
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        alert(`Logado com sucesso!`);
-        navigate("/produtos", { replace: true });
-      })
-      .catch((error) => {
-        alert(`Usuario e Senha Invalidos\n\nErro:${error}`);
-        console.log(error);
-      });
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Logado com Sucesso");
+      setIsAuthenticated(true);
+      setAuthEmail(email);
+      navigate("/home", { replace: true });
+    } catch (error) {
+      alert("Usuario ou senha incorretas");
+      console.log(error);
+    }
   }
 
   return (
-    <main>
-      <section className="login">
-        <form className="formLogin" onSubmit={handleSubmit}>
-          <h1>Usuário</h1>
-       <input
-            type="email"
-            placeholder="seu melhor e-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button type="submit">Entrar</button>
-        </form>
-      </section>
-    </main>
+    <>
+      <form onSubmit={handleLogin}>
+        <label>Usuario:</label>
+        <input
+          type="email"
+          placeholder="meuemail@gmail.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label>Senha:</label>
+        <input
+          type="password"
+          placeholder="********"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit">Logar</button>
+      </form>
+    </>
   );
 }
