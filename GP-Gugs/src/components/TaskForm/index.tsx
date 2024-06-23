@@ -1,52 +1,69 @@
-// components/TaskForm/index.tsx
-
+// components/TaskForm.tsx
 import React, { useState } from "react";
-import { db } from "../../services/firebaseConnection";
-import { collection, addDoc } from "firebase/firestore";
+import { TaskProps } from "../../types";
 
 interface TaskFormProps {
   projetoId: string;
-  onTaskAdded: () => void;
+  onClose: () => void;
+  onAddTarefa: (novaTarefa: Omit<TaskProps, "id">) => Promise<void>;
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({ projetoId, onTaskAdded }) => {
-  const [name, setName] = useState("");
+const TaskForm: React.FC<TaskFormProps> = ({
+  projetoId,
+  onClose,
+  onAddTarefa,
+}) => {
+  const [novaTarefa, setNovaTarefa] = useState<Omit<TaskProps, "id">>({
+    name: "",
+    isCompleted: false,
+    projetoId: projetoId,
+  });
 
-  const handleAddTask = async () => {
-    if (!name) {
-      alert("O nome da tarefa é obrigatório!");
-      return;
-    }
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNovaTarefa((prevTarefa) => ({
+      ...prevTarefa,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      await addDoc(collection(db, "tarefas"), {
-        name,
-        isCompleted: false,
-        projetoId,
-      });
-      setName(""); // Limpa o campo após adicionar a tarefa
-      onTaskAdded(); // Callback para atualizar a lista de tarefas após adição
+      await onAddTarefa(novaTarefa);
+      setNovaTarefa({ name: "", isCompleted: false, projetoId });
     } catch (error) {
       console.error("Erro ao adicionar tarefa: ", error);
     }
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md mb-4">
-      <h2 className="text-lg font-bold mb-2">Nova Tarefa</h2>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Nome da tarefa"
-        className="w-full p-2 border rounded mb-2"
-      />
+    <form onSubmit={handleSubmit} className="mt-4">
+      <label className="block mb-2">
+        Nome da Tarefa:
+        <input
+          type="text"
+          name="name"
+          value={novaTarefa.name}
+          onChange={handleChange}
+          className="border border-gray-300 rounded px-3 py-1 w-full mt-1"
+          required
+        />
+      </label>
       <button
-        onClick={handleAddTask}
-        className="bg-blue-500 text-white py-2 px-4 rounded"
+        type="submit"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
       >
-        Adicionar
+        Adicionar Tarefa
       </button>
-    </div>
+      <button
+        type="button"
+        onClick={onClose}
+        className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+      >
+        Cancelar
+      </button>
+    </form>
   );
 };
 

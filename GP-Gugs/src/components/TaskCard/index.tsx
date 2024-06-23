@@ -1,38 +1,28 @@
-// components/ProjectCard/index.tsx
-
+// components/TaskCard.tsx
 import React from "react";
-import { Projeto } from "../../types";
-import { useNavigate } from "react-router-dom";
+import { TaskProps } from "../../types";
 
-interface ProjectCardProps {
-  projeto: Projeto;
+interface TaskCardProps {
+  tarefa: TaskProps;
+  projetoId: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ projeto }) => {
-  const navigate = useNavigate();
-
-  const handleEditClick = () => {
-    navigate(`/editar-projeto/${projeto.id}`); // Redireciona para a página de edição do projeto
-    // Ou pode abrir um modal de edição aqui
+const TaskCard: React.FC<TaskCardProps> = ({ tarefa, projetoId }) => {
+  const handleToggleCompleted = () => {
+    // Lógica para marcar a tarefa como concluída ou não
   };
 
   return (
-    <div className="bg-white p-4 mb-4 rounded-lg shadow-md">
-      <h2 className="text-lg font-semibold mb-2">{projeto.nome}</h2>
-      <p>
-        <strong>Responsável:</strong> {projeto.responsavelNome}
-      </p>
-      <p>
-        <strong>Status:</strong> {projeto.status}
-      </p>
-      <button
-        onClick={handleEditClick}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
-      >
-        Editar
-      </button>
+    <div className="flex items-center mb-2">
+      <input
+        type="checkbox"
+        checked={tarefa.isCompleted}
+        onChange={handleToggleCompleted}
+        className="mr-2"
+      />
+      <p>{tarefa.name}</p>
     </div>
   );
 };
 
-export default ProjectCard;
+export default TaskCard;

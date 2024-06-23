@@ -7,10 +7,10 @@ export interface PersonProps {
 export interface TaskProps {
   id: string;
   name: string;
-  status: "A fazer" | "Fazendo" | "Concluído";
   isCompleted: boolean;
-  projetoId: string; // ID do projeto ao qual esta tarefa pertence
+  projetoId: string;
 }
+
 
 export interface Projeto {
   id: string;

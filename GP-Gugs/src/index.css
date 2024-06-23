@@ -63,3 +63,21 @@ button:hover {
   margin-bottom: 10px;
   color: #2691c0;
 }
+/* styles.css */
+
+.theme-black {
+  background-color: #3e5157;
+  color: #ffffff; /* Cor do texto em tema escuro */
+}
+
+.theme-black a {
+  color: #ffffff; /* Cor do link em tema escuro */
+}
+
+.theme-black .bg-gray-100 {
+  background-color: #2d3748; /* Cor de fundo das colunas */
+}
+
+.theme-black .text-gray-800 {
+  color: #ffffff; /* Cor do texto nos cards */
+}

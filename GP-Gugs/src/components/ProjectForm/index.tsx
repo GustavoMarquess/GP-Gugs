@@ -13,7 +13,7 @@ interface PersonProps {
 
 const ProjectForm: React.FC = () => {
   const [nome, setNome] = useState("");
-  const [responsavel, setResponsavel] = useState<PersonProps | null>(null); 
+  const [responsavel, setResponsavel] = useState<PersonProps | null>(null);
   const [dataConclusao, setDataConclusao] = useState("");
   const [status, setStatus] = useState("A fazer");
   const [mostrarModal, setMostrarModal] = useState(false);
