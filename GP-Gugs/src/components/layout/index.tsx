@@ -1,17 +1,11 @@
-import { Outlet } from "react-router-dom";
-//import { Header } from "../Header";
-//import { Footer } from "../Footer";
-import { UserProvider } from "../../context/usercontext";
+import React from "react";
 
-export function Layout() {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <>
- <UserProvider>
-      <Header />
-      </UserProvider>
-
-      <Outlet />
-      <Footer />
-    </>
+    <div className="min-h-screen flex items-center justify-center bg-bgColor">
+      {children}
+    </div>
   );
-}
+};
+
+export default Layout;

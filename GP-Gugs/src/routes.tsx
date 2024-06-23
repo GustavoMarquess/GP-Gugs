@@ -1,26 +1,31 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Login } from "./pages/Login";
+import Login from "./pages/Login";
 import { Pessoa } from "./pages/Pessoa";
-import { Tarefa } from "./pages/Tarefa";
-import { Home } from "./pages/Home"
+import Home from "./pages/Home";
+import Projeto from "./pages/Projeto";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
+    errorElement: <ErrorPage />,
   },
   {
     path: "/pessoa",
     element: <Pessoa />,
+    errorElement: <ErrorPage />,
   },
   {
-    path: "/tarefa",
-    element: <Tarefa />,
-  },
-  {
-    path: "/home",
-    element: <Tarefa />,
+    path: "/projeto", // Corrigido para "/projeto"
+    element: <Projeto />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
-export { router };
+export default router;
