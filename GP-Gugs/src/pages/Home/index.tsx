@@ -1,5 +1,3 @@
-// pages/Home.tsx
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebaseConnection";
@@ -13,7 +11,7 @@ import Footer from "../../components/Footer";
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [projetos, setProjetos] = useState<Projeto[]>([]);
-  const [showNovaPessoa, setShowNovaPessoa] = useState(false); // Estado para controlar a exibição do modal
+  const [showNovaPessoa, setShowNovaPessoa] = useState(false);
 
   const fetchProjetos = async () => {
     try {
@@ -69,7 +67,7 @@ const Home: React.FC = () => {
         </button>
         <button
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setShowNovaPessoa(true)} // Mostra o modal ao clicar
+          onClick={() => setShowNovaPessoa(true)}
         >
           Nova Pessoa
         </button>
@@ -108,17 +106,16 @@ const Home: React.FC = () => {
             ))}
         </div>
       </div>
-      {/* Modal de Nova Pessoa */}
+      {}
       {showNovaPessoa && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-lg">
             <NovaPessoa
               onAddPessoa={(novaPessoa) => {
-                // Aqui você pode atualizar o estado de persons ou realizar outras ações necessárias
                 console.log("Nova pessoa adicionada: ", novaPessoa);
-                setShowNovaPessoa(false); // Fecha o modal ao adicionar pessoa
+                setShowNovaPessoa(false);
               }}
-              onClose={() => setShowNovaPessoa(false)} // Função para fechar o modal
+              onClose={() => setShowNovaPessoa(false)}
             />
           </div>
         </div>

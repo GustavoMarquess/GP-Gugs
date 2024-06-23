@@ -90,7 +90,7 @@ const Login: React.FC = () => {
                 className="block text-gray-700 text-sm font-bold"
                 htmlFor="password"
               >
-                Password
+                Senha
               </label>
               <input
                 type="password"
@@ -108,7 +108,7 @@ const Login: React.FC = () => {
                 type="submit"
                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
               >
-                Sign In
+                Entrar
               </button>
             </div>
           </form>
@@ -117,7 +117,7 @@ const Login: React.FC = () => {
               onClick={handleGoogleLogin}
               className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
             >
-              Sign in with Google
+              Acesse com sua conta Google
             </button>
           </div>
         </div>

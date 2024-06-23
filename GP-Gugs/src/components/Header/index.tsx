@@ -19,7 +19,8 @@ const Header: React.FC = () => {
     <header className="mb-4">
       <nav className="flex justify-between items-center py-4 px-6 bg-green-500 text-white">
         <div className="flex items-center">
-          <img src={logo} alt="Logo" className="w-8 h-auto mr-2" />
+          <img src={logo} alt="Logo" className="w-8 h-auto mr-5" />
+
           <Link to="/home" className="text-xl font-bold">
             Gerencimento de Projetos
           </Link>
