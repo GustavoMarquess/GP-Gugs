@@ -9,6 +9,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 export const Pessoa: React.FC = () => {
   interface PersonProps {
@@ -27,7 +28,7 @@ export const Pessoa: React.FC = () => {
       const querySnapshot = await getDocs(collection(db, "persons"));
       const personsData: PersonProps[] = querySnapshot.docs.map((doc) => ({
         id: doc.id,
-        ...(doc.data() as Pick<PersonProps, "name" | "email">), // Utiliza desestruturação para garantir que apenas as propriedades 'name' e 'email' são extraídas
+        ...(doc.data() as Pick<PersonProps, "name" | "email">),
       }));
       setPersons(personsData);
     } catch (error) {
@@ -155,8 +156,11 @@ export const Pessoa: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {persons.map((person) => (
-              <tr key={person.id} className="border-b border-gray-200">
+            {persons.map((person, index) => (
+              <tr
+                key={person.id}
+                className={index % 2 === 0 ? "bg-gray-50" : ""}
+              >
                 <td className="px-4 py-2">{person.id}</td>
                 <td className="px-4 py-2">{person.name}</td>
                 <td className="px-4 py-2">{person.email}</td>
@@ -165,13 +169,13 @@ export const Pessoa: React.FC = () => {
                     onClick={() => setEditingPerson(person)}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-lg focus:outline-none focus:shadow-outline"
                   >
-                    Editar
+                    <FaEdit />
                   </button>
                   <button
                     onClick={() => handleDeletePerson(person.id)}
                     className="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded-lg focus:outline-none focus:shadow-outline"
                   >
-                    Excluir
+                    <FaTrash />
                   </button>
                 </td>
               </tr>

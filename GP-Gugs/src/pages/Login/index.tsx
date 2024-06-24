@@ -8,6 +8,7 @@ import {
 import { auth } from "../../services/firebaseConnection";
 import Layout from "../../components/layout";
 import logo from "../../assets/GP.png";
+import { FaGoogle } from "react-icons/fa";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -106,7 +107,7 @@ const Login: React.FC = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+                className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
               >
                 Entrar
               </button>
@@ -115,9 +116,9 @@ const Login: React.FC = () => {
           <div className="flex justify-center mt-4">
             <button
               onClick={handleGoogleLogin}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline flex items-center"
             >
-              Acesse com sua conta Google
+              <FaGoogle className="mr-2" /> Acesse com sua conta Google
             </button>
           </div>
         </div>

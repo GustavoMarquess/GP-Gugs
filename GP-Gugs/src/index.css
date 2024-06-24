@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Reset padrão */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -63,21 +62,38 @@ button:hover {
   margin-bottom: 10px;
   color: #2691c0;
 }
-/* styles.css */
 
 .theme-black {
   background-color: #3e5157;
-  color: #ffffff; /* Cor do texto em tema escuro */
+  color: #ffffff; 
 }
 
 .theme-black a {
-  color: #ffffff; /* Cor do link em tema escuro */
+  color: #ffffff; 
+}
+
+.theme-black h2 {
+  color: #ffffff; 
 }
 
 .theme-black .bg-gray-100 {
-  background-color: #2d3748; /* Cor de fundo das colunas */
+  background-color: #2d3748; 
 }
 
 .theme-black .text-gray-800 {
-  color: #ffffff; /* Cor do texto nos cards */
+  color: #ffffff; 
+}
+
+.bg-white,
+.text-gray-800,
+.text-z {
+  background-color: #ffffff;
+  color: #3e5157;
+}
+
+.theme-black .bg-white,
+.theme-black .text-gray-800,
+.theme-black .text-z {
+  background-color: #3e5157;
+  color: #ffffff;
 }

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebaseConnection";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import { Navigate } from "react-router-dom";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css"; // Estilos padrão do react-datepicker
+import "react-datepicker/dist/react-datepicker.css";
 import NovaPessoa from "../Pessoa";
 
 interface PersonProps {
@@ -13,9 +13,10 @@ interface PersonProps {
 }
 
 const ProjectForm: React.FC = () => {
+  const navigate = useNavigate();
   const [nome, setNome] = useState("");
   const [responsavel, setResponsavel] = useState<PersonProps | null>(null);
-  const [dataConclusao, setDataConclusao] = useState<Date | null>(null); // Alterado para tipo Date
+  const [dataConclusao, setDataConclusao] = useState<Date | null>(null);
   const [status, setStatus] = useState("A fazer");
   const [mostrarModal, setMostrarModal] = useState(false);
   const [pessoas, setPessoas] = useState<PersonProps[]>([]);
@@ -47,11 +48,11 @@ const ProjectForm: React.FC = () => {
         nome,
         responsavelId: responsavel.id,
         responsavelNome: responsavel.nome,
-        dataConclusao: dataConclusao?.toISOString() || "", // Convertendo para formato de string
+        dataConclusao: dataConclusao ? dataConclusao.toISOString() : null,
         status,
         tarefas: [],
       });
-      return <Navigate to="/home" />; // Redirecionando para a página home
+      navigate("/home");
     } catch (error) {
       console.error("Erro ao adicionar projeto: ", error);
     }

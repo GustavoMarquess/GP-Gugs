@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../services/firebaseConnection";
-import { getDocs, collection, updateDoc, doc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { Projeto } from "../../types";
 import ProjectCard from "../../components/ProjectCard";
 import Header from "../../components/Header";
@@ -14,6 +20,10 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const [projetos, setProjetos] = useState<Projeto[]>([]);
   const [showNovaPessoa, setShowNovaPessoa] = useState(false);
+
+  useEffect(() => {
+    fetchProjetos();
+  }, []);
 
   const fetchProjetos = async () => {
     try {
@@ -53,9 +63,18 @@ const Home: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    fetchProjetos();
-  }, []);
+  const handleDeleteProjeto = async (projetoId: string) => {
+    try {
+      const projetoRef = doc(db, "projetos", projetoId);
+      await deleteDoc(projetoRef);
+
+      setProjetos((prevProjetos) =>
+        prevProjetos.filter((projeto) => projeto.id !== projetoId)
+      );
+    } catch (error) {
+      console.error("Erro ao excluir projeto ", error);
+    }
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -79,6 +98,7 @@ const Home: React.FC = () => {
                 key={projeto.id}
                 projeto={projeto}
                 onClick={() => handleUpdateStatus(projeto.id, "Fazendo")}
+                onDelete={() => handleDeleteProjeto(projeto.id)} // Aqui você passa a função de deleção
               />
             ))}
         </div>
@@ -91,6 +111,7 @@ const Home: React.FC = () => {
                 key={projeto.id}
                 projeto={projeto}
                 onClick={() => handleUpdateStatus(projeto.id, "Concluído")}
+                onDelete={() => handleDeleteProjeto(projeto.id)} // Aqui você passa a função de deleção
               />
             ))}
         </div>
@@ -99,11 +120,14 @@ const Home: React.FC = () => {
           {projetos
             .filter((p) => p.status === "Concluído")
             .map((projeto) => (
-              <ProjectCard key={projeto.id} projeto={projeto} />
+              <ProjectCard
+                key={projeto.id}
+                projeto={projeto}
+                onDelete={() => handleDeleteProjeto(projeto.id)} // Aqui você passa a função de deleção
+              />
             ))}
         </div>
       </div>
-      {}
       {showNovaPessoa && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg shadow-lg">
@@ -117,7 +141,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       )}
-      <Footer />;
+      <Footer />
     </div>
   );
 };
