@@ -31,7 +31,7 @@ Este projeto é uma aplicação de gerenciamento de projetos desenvolvida com Re
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/GustavoMarquess/GP-Gugs.git
    ```
 
 2. Navegue até o diretório do projeto:
