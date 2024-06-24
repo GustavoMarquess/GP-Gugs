@@ -98,7 +98,7 @@ const Home: React.FC = () => {
                 key={projeto.id}
                 projeto={projeto}
                 onClick={() => handleUpdateStatus(projeto.id, "Fazendo")}
-                onDelete={() => handleDeleteProjeto(projeto.id)} 
+                onDelete={() => handleDeleteProjeto(projeto.id)}
               />
             ))}
         </div>
@@ -123,7 +123,8 @@ const Home: React.FC = () => {
               <ProjectCard
                 key={projeto.id}
                 projeto={projeto}
-                onDelete={() => handleDeleteProjeto(projeto.id)} 
+                onDelete={() => handleDeleteProjeto(projeto.id)}
+              />
             ))}
         </div>
       </div>
