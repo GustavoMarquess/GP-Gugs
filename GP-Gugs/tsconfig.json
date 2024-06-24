@@ -14,8 +14,9 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     
   },
-  "include": ["src"]
+  "include": ["src", "setup.test.js"]
 }
