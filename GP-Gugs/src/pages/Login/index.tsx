@@ -50,15 +50,15 @@ const Login: React.FC = () => {
         navigate("/home");
       }, 3000);
     } catch (error) {
-      setError("Failed to log in with Google. Please try again.");
+      setError("Falha ao logar com sua conta Google. Tente novamente.");
     }
   };
 
   return (
     <Layout>
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md border-t-8 border-blue-500">
-          <div className="flex justify-center mb-6">
+        <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md border-t-8 border-blue-800">
+          <div className="flex justify-center mb-10">
             <img src={logo} alt="Logo" className="w-24 h-auto rounded-lg" />
           </div>
           <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>

@@ -7,6 +7,8 @@ import ProjectCard from "../../components/ProjectCard";
 import Header from "../../components/Header";
 import NovaPessoa from "../../components/Pessoa/";
 import Footer from "../../components/Footer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -60,16 +62,11 @@ const Home: React.FC = () => {
       <Header />
       <div className="flex justify-between mb-4">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded flex items-center"
           onClick={() => navigate("/projeto")}
         >
+          <FontAwesomeIcon icon={faPlus} className="mr-2" />
           Novo Projeto
-        </button>
-        <button
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setShowNovaPessoa(true)}
-        >
-          Nova Pessoa
         </button>
       </div>
       <div className="flex justify-between space-x-4">

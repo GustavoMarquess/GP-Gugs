@@ -2,6 +2,12 @@
 
 import React from "react";
 import { Projeto } from "../../types";
+import {
+  FaCalendarAlt,
+  FaUser,
+  FaCheckCircle,
+  FaTimesCircle,
+} from "react-icons/fa";
 
 interface ProjectCardProps {
   projeto: Projeto;
@@ -20,9 +26,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         document.body.classList.contains("theme-black") ? "text-white" : ""
       }`}
     >
-      <h2 className="text-lg font-bold mb-2">{projeto.nome}</h2>
-      <p className="mb-2">Responsável: {projeto.responsavelNome}</p>
-      <p className="mb-2">Status: {projeto.status}</p>
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4">Projeto: {projeto.nome}</h2>
+        <div className="mb-4">
+          <FaUser className="inline-block mr-2 text-gray-600" />
+          <span className="text-lg">
+            Responsável: {projeto.responsavelNome}
+          </span>
+        </div>
+        <div className="mb-4">
+          <FaCheckCircle className="inline-block mr-2 text-gray-600" />
+          <span className="text-lg">Status: {projeto.status}</span>
+        </div>
+        <div className="mb-4">
+          <FaCalendarAlt className="inline-block mr-2 text-gray-600" />
+          <span className="text-lg">Data: {projeto.dataConclusao}</span>
+        </div>
+      </div>
       <button
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         onClick={onClick}
