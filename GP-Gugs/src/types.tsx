@@ -18,8 +18,8 @@ export interface Projeto {
   responsavelId: string;
   responsavelNome: string;
   status: "A fazer" | "Fazendo" | "Concluído";
-  tarefas: TaskProps[]; // Array de tarefas associadas ao projeto
-  dataConclusao: string; // Adicionando a propriedade dataConclusao
+  tarefas: TaskProps[]; 
+  dataConclusao: string; 
 }
 export interface Tarefa {
   id: string;

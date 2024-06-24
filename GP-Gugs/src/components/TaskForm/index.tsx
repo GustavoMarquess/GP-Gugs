@@ -4,7 +4,7 @@ import { TaskProps } from "../../types";
 interface TaskFormProps {
   projetoId: string;
   onClose: () => void;
-  onSubmit: (novaTarefa: Omit<TaskProps, "id">) => Promise<void>; // Renomeado para onSubmit
+  onSubmit: (novaTarefa: Omit<TaskProps, "id">) => Promise<void>;
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({ projetoId, onClose, onSubmit }) => {
@@ -25,9 +25,9 @@ const TaskForm: React.FC<TaskFormProps> = ({ projetoId, onClose, onSubmit }) => 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await onSubmit(novaTarefa); // Chama a função onSubmit para armazenar no banco
+      await onSubmit(novaTarefa); 
       setNovaTarefa({ name: "", isCompleted: false, projetoId });
-      onClose(); // Fecha o formulário após submeter
+      onClose(); 
     } catch (error) {
       console.error("Erro ao adicionar tarefa: ", error);
     }
