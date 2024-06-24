@@ -47,7 +47,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           Projeto: {projeto.nome}
         </h2>
         <div className="mb-4">
-          <FaUser className={`inline-block mr-2 ${darkMode ? "text-white" : "text-gray-600"}`} />
+          <FaUser
+            className={`inline-block mr-2 ${
+              darkMode ? "text-white" : "text-gray-600"
+            }`}
+          />
           <span
             className={`text-lg ${darkMode ? "text-white" : "text-gray-800"}`}
           >
@@ -55,7 +59,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </span>
         </div>
         <div className="mb-4">
-          <FaCheckCircle className={`inline-block mr-2 ${darkMode ? "text-green-400" : "text-gray-600"}`} />
+          <FaCheckCircle
+            className={`inline-block mr-2 ${
+              darkMode ? "text-green-400" : "text-gray-600"
+            }`}
+          />
           <span
             className={`text-lg ${darkMode ? "text-white" : "text-gray-800"}`}
           >
@@ -63,7 +71,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </span>
         </div>
         <div className="mb-4">
-          <FaCalendarAlt className={`inline-block mr-2 ${darkMode ? "text-yellow-400" : "text-gray-600"}`} />
+          <FaCalendarAlt
+            className={`inline-block mr-2 ${
+              darkMode ? "text-yellow-400" : "text-gray-600"
+            }`}
+          />
           <span
             className={`text-lg ${darkMode ? "text-white" : "text-gray-800"}`}
           >

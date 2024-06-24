@@ -1,18 +1,13 @@
-// components/TaskForm.tsx
 import React, { useState } from "react";
 import { TaskProps } from "../../types";
 
 interface TaskFormProps {
   projetoId: string;
   onClose: () => void;
-  onAddTarefa: (novaTarefa: Omit<TaskProps, "id">) => Promise<void>;
+  onSubmit: (novaTarefa: Omit<TaskProps, "id">) => Promise<void>; // Renomeado para onSubmit
 }
 
-const TaskForm: React.FC<TaskFormProps> = ({
-  projetoId,
-  onClose,
-  onAddTarefa,
-}) => {
+const TaskForm: React.FC<TaskFormProps> = ({ projetoId, onClose, onSubmit }) => {
   const [novaTarefa, setNovaTarefa] = useState<Omit<TaskProps, "id">>({
     name: "",
     isCompleted: false,
@@ -30,8 +25,9 @@ const TaskForm: React.FC<TaskFormProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await onAddTarefa(novaTarefa);
+      await onSubmit(novaTarefa); // Chama a função onSubmit para armazenar no banco
       setNovaTarefa({ name: "", isCompleted: false, projetoId });
+      onClose(); // Fecha o formulário após submeter
     } catch (error) {
       console.error("Erro ao adicionar tarefa: ", error);
     }
